@@ -1,0 +1,18 @@
+local aa = require('android_auto')
+local ui = require('ui')
+local url = 'http://192.168.1.112:8080/index.html'
+local loaded = false
+
+function aa.onShow()
+  loaded = false
+end
+
+function aa.draw(dt)
+  ui.text('🎬 Video Player Local')
+  if not loaded then
+    loaded = true
+    ac.delay(function()
+      aa.web.load(url)
+    end, 0.5)
+  end
+end
